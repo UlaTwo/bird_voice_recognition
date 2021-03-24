@@ -19,14 +19,24 @@ class TestDataset(Dataset):
         self.amplitude_to_db = torchaudio.transforms.AmplitudeToDB()
         self.resample = torchaudio.transforms.Resample(self.sample_rate, 44100)
         self.resize = transforms.Resize((80,700))
-        
+        self.cropp = transforms.CenterCrop((80,700))
     
     def __getitem__(self, index):
         
+        print(self.file_path)
         waveform = self.resample(self.waveform)
         # utworzenie Mal Spektogramu
         specgram = self.mel_spectogram(waveform)
-        specgram  = self.resize(specgram)
+        print("size: ", specgram.size())
+        if specgram.size()[2]<700:
+            specgram  = self.resize(specgram)
+            print("resize")
+        else:
+            specgram  = self.cropp(specgram)
+            print("cropp")
+        
+#         specgram  = self.cropp(specgram)
+        print(specgram.size())
         # transformacja za skali amplitud do decybeli
         transformedAmpToDB = self.amplitude_to_db(specgram)
         

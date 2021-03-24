@@ -54,7 +54,7 @@ class Classifier():
     def __init__(self,path, file_name):
         self.path = path
         self.file = file_name
-        self.model = CNN_Audio_Model.load_from_checkpoint(checkpoint_path="./model_25e_vallist.ckpt")
+        self.model = CNN_Audio_Model.load_from_checkpoint(checkpoint_path="./T+B+F_model_25e_vallist_sparkling_thunder_1.ckpt")
         self.trainer = pl.Trainer()
         self.left_column, self.right_column = st.beta_columns(2)
         #wczytanie wyniku z csv:
