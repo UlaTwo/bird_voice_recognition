@@ -1,1 +1,48 @@
-de
+Uruchamianie programu:
+
+1. Trening modeli:
+    usage: RunCnn.py [-h] -ag WITH_AG -n MODEL_NAME -d DATASET -e EPOCHS -w WANDB
+                 -v WITH_WRONGLIST [-vn NAME_WRONGLIST]
+
+    optional arguments:
+  -h, --help            show this help message and exit
+  -ag WITH_AG, --with_AG WITH_AG
+                        Model with, or without attention mechanism: True or
+                        False
+  -n MODEL_NAME, --model_name MODEL_NAME
+                        Model name
+  -d DATASET, --dataset DATASET
+                        Which datasets should be involved: 1 - birdVox , 2 -
+                        birdVox and freefield, 3 - birdVox, freefield and
+                        TutAcousticScenes, 4 - warblr, 5 - freefield
+  -e EPOCHS, --epochs EPOCHS
+                        Number of trained epochs
+  -w WANDB, --wandb WANDB
+                        Model with or without Wandb Logger: True or False
+  -v WITH_WRONGLIST, --with_wrongList WITH_WRONGLIST
+                        With list of files incorrect classified on validation
+                        epoch.
+  -vn NAME_WRONGLIST, --name_wrongList NAME_WRONGLIST
+                        File name, to which list of incorrect classified on validation
+                        epoch files will be .
+
+    przykład:
+      python RunCnn.py -ag True -n nazwaModelu -d 1 -e 1 -w True -v False -vn nazwaPliku
+
+2. Testowanie modelu na zbiorze danych Warblr:
+  python MainWarblrCheck.py
+  
+3. Uruchomienie aplikacji Streamlit:
+  streamlit run ./StreamlitApp/StreamlitMain.py [ --server.port 9900 --browser.serverAddress 127.0.0.1 ]
+Zawartość poszczególnych plików:
+  - RunCnn.py - uruchomienie procesu uczenia się modelu
+  - MainWarblrCheck.py - uruchomienie testowania modelu na zbiorze danych Warblr
+  - Classifier/Classifier - moduł służący do wydania predykcji dla zadanego pliku przez zadany zapisany model sieci
+  - CnnModels/ - implementacja sieci bazowej oraz ze skupianiem uwagi
+  - DatasetModules/ - implementacja klas wczytujących dane i przetwarzających nagrania na spektrogram (Dataset_Module - dla zbioru danych; TestDataset - dla pojedynczego pliku)
+  -StreamlitApp/ - StreamlitMain.py - uruchomienie aplikacji, obsługa flag
+                 - AudioDisplay.py - wyświetlanie informacji o nagraniu
+                 - ClassifierDisplay.py - wyświetlenie informacji o dokonanej klasyfikacji
+                 - FileUploadedProcessing.py - obsługa wgranego przez użytkownika nagrania
+                 -Recordings/ - nagrania wyświetlane przez aplikację
+  -models/ zapisane modele
