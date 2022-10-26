@@ -1,6 +1,7 @@
-# 2020ut-bird-recognition
+# Bird voice recognition
 Klasyfikacja nagrań dźwiękowych ptaków za pomocą modeli ze skupianiem uwagi
-Praca inżynierska; autor: Urszula Tworzydło
+Architektura bazowa: bulbul
+Modyfikacja: wprowadzenie mechanizmu skupiania uwagi
 
 Uruchamianie programu:
 
